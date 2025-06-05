@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
 
 function App() {
+useEffect(() => {
+  if (!document.getElementById('3cx-live-chat-script')) {
+    const script = document.createElement('script');
+    script.src = 'http://localhost:5000/3cx-script';
+    script.async = true;
+    script.id = '3cx-live-chat-script';
+
+    script.onload = () => {
+      // After the script is loaded, add the <call-us-selector> element
+      const callUs = document.createElement('call-us-selector');
+      callUs.setAttribute('phonesystem-url', 'https://1100.3cx.cloud');
+      callUs.setAttribute('party', 'dustech');
+      document.body.appendChild(callUs);
+    };
+
+    document.body.appendChild(script);
+  }
+}, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>3CX Chat with Real-Time Updates</h1>
     </div>
   );
 }
