@@ -1,25 +1,25 @@
 import { useEffect } from 'react';
 
 function App() {
-useEffect(() => {
-  if (!document.getElementById('3cx-live-chat-script')) {
-    const script = document.createElement('script');
-    script.src = 'http://localhost:5000/3cx-script';
-    script.async = true;
-    script.id = '3cx-live-chat-script';
+  useEffect(() => {
+    // Avoid injecting the script multiple times
+    if (!document.getElementById('tcx-callus-js')) {
+      const script = document.createElement('script');
+      script.src = 'https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js';
+      script.defer = true;
+      script.id = 'tcx-callus-js';
+      script.charset = 'utf-8';
+      document.body.appendChild(script);
+    }
 
-    script.onload = () => {
-      // After the script is loaded, add the <call-us-selector> element
-      const callUs = document.createElement('call-us-selector');
-      callUs.setAttribute('phonesystem-url', 'https://1100.3cx.cloud');
-      callUs.setAttribute('party', 'dustech');
-      document.body.appendChild(callUs);
-    };
-
-    document.body.appendChild(script);
-  }
-}, []);
-
+    // Inject the <call-us-selector> tag
+    if (!document.querySelector('call-us-selector')) {
+      const callUsSelector = document.createElement('call-us-selector');
+      callUsSelector.setAttribute('phonesystem-url', 'https://1100.3cx.cloud');
+      callUsSelector.setAttribute('party', 'dustech');
+      document.body.appendChild(callUsSelector);
+    }
+  }, []);
 
   return (
     <div>
