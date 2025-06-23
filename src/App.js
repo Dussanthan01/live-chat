@@ -4,7 +4,7 @@ function App() {
   useEffect(() => {
     if (!document.querySelector('call-us-selector')) {
       const chatWidget = document.createElement('call-us-selector');
-      chatWidget.setAttribute('phonesystem-url', 'https://1100.3cx.cloud');
+      chatWidget.setAttribute('phonesystem-url', 'https://1037.3cx.cloud');
       chatWidget.setAttribute('party', 'dustech'); // ✅ Use your correct widget ID
       document.body.appendChild(chatWidget);
     }
